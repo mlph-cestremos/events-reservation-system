@@ -8,11 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const NavBar = () => {
     return (
     <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home"><FontAwesomeIcon icon='calendar'></FontAwesomeIcon></Navbar.Brand>
+        <Navbar.Brand><Link to='/'><FontAwesomeIcon icon='calendar'></FontAwesomeIcon></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link><Link to='/'>Home</Link></Nav.Link>
                 <Nav.Link><Link to='/users'>Users</Link></Nav.Link>
                 <Nav.Link><Link to='/venues'>Venues</Link></Nav.Link>
                 <Nav.Link><Link to='/reservations'>Reservations</Link></Nav.Link>
