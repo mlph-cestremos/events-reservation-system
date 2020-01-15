@@ -5,9 +5,13 @@ import Main from './modules/Main'
 export default function App() {
 
   return (
-    <div className="container">
+    <div>
       <Navigation />
-      <Main />
+
+      <div className="container">
+       <Main />
+      </div>
+      
     </div>
   )
 }

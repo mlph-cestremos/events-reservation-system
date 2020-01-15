@@ -119,6 +119,7 @@ const Reservation = () => {
 
   return (
     <section>
+      <h1> Reservations </h1>
       <Link to="#" className="float over-accordion" onClick={onCreateRequest}>
         <i className="fa fa-plus my-float"></i>
       </Link>
