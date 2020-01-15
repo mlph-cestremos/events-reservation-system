@@ -15,7 +15,7 @@ const NavBar = () => {
                 <Nav.Link><Link to='/'>Home</Link></Nav.Link>
                 <Nav.Link><Link to='/users'>Users</Link></Nav.Link>
                 <Nav.Link><Link to='/venues'>Venues</Link></Nav.Link>
-                <Nav.Link><Link to='/reservations'>Reservations</Link></Nav.Link>
+                <Nav.Link><Link to='/reservation'>Reservations</Link></Nav.Link>
             </Nav>
             <Link to="/login"><Button variant="outline-primary" className='login-btn'>Log In</Button></Link>
             <Link to="/register"><Button variant="outline-info">Register</Button></Link>
