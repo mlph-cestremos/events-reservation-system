@@ -1,12 +1,17 @@
 import React, { Component, useState,  } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CustomTooltip, Confirmation } from 'modules/common-components';
+import { CustomTooltip, Confirmation } from 'modules';
+import ReservationForm from 'modules/reservation/ReservationForm';
+import { Link } from 'react-router-dom';
 
 const Reservation = () => {
   // default state
   const [uiState, setUiState] = useState({
     showDeleteModal: false,
+    showUpdateModal: false,
+    showCreateModal: false,
+    isNew: true,
     targetReservation: null
   });
 
@@ -58,8 +63,66 @@ const Reservation = () => {
     });
   }
 
+  const onUpdateRequest = (id) => {
+    setUiState({
+      ...uiState,
+      showUpdateModal: true,
+      isNew: false,
+      targetReservation: data[id]
+    });
+  }
+
+  const onUpdateCancel = () => {
+    setUiState({
+      ...uiState,
+      showUpdateModal: false,
+      isNew: true,
+      targetReservation: null
+    });
+  }
+
+  const onUpdateSuccess = () => {
+    setUiState({
+      ...uiState,
+      showUpdateModal: false,
+      isNew: true,
+      targetReservation: null
+    });
+  }
+
+  const onCreateRequest = (id) => {
+    setUiState({
+      ...uiState,
+      showCreateModal: true,
+      isNew: true,
+      targetReservation: null
+    });
+  }
+
+  const onCreateCancel = () => {
+    setUiState({
+      ...uiState,
+      showCreateModal: false,
+      isNew: true,
+      targetReservation: null
+    });
+  }
+
+  const onCreateSuccess = () => {
+    setUiState({
+      ...uiState,
+      showCreateModal: false,
+      isNew: true,
+      targetReservation: null
+    });
+  }
+
   return (
     <section>
+      <Link to="#" className="float over-accordion" onClick={onCreateRequest}>
+        <i className="fa fa-plus my-float"></i>
+      </Link>
+
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -79,7 +142,7 @@ const Reservation = () => {
                 <td> {reservation.venue} </td>
                 <td> {reservation.status} </td>
                 <td align="center">
-                <Button variant="link" onClick={ () => alert(reservation.id) }>
+                <Button variant="link" onClick={ () => onUpdateRequest(reservation.id) }>
                     <CustomTooltip placement="top"
                       value="Update Reservation">
                         <FontAwesomeIcon icon='edit'></FontAwesomeIcon>
@@ -113,8 +176,23 @@ const Reservation = () => {
             Are you sure you want to delete?
             </> : ''
           }
-          
       </Confirmation>
+
+      <ReservationForm
+        isNew={uiState.isNew}
+        isShown={uiState.showUpdateModal && uiState.targetReservation}
+        onCancel={onUpdateCancel}
+        onSave={onUpdateSuccess}
+      >
+      </ReservationForm>
+
+      <ReservationForm
+        isNew={uiState.isNew}
+        isShown={uiState.showCreateModal && !uiState.targetReservation}
+        onCancel={onCreateCancel}
+        onSave={onCreateSuccess}
+      >
+      </ReservationForm>
     </section>
   )
 }

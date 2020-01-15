@@ -1,6 +1,5 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './home/Home'
 import Login from './login/Login'
 import Registration from './registration/Registration'
@@ -9,6 +8,10 @@ import UserPage from './users/UserPage'
 import Venues from './venues/Venues'
 import VenuePage from './venues/VenuePage'
 import Reservation from './reservation/Reservation'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-datetime/css/react-datetime.css';
+import 'index.css';
 
 export default function Main() {
   return (
