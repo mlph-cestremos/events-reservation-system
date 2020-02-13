@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, setState } from 'react'
 import { Modal, Button, Form, } from 'react-bootstrap';
 
 const EditUserForm = ({updateUser, isShown, currentUser}) => {
     
     // const initialFormState = useState(currentUser)
     const [user, setUser] = useState([currentUser])
+    useEffect(() => {
+        setUser(currentUser)
+      }, [currentUser]);
 
 
     const handleInputChange = event => {
@@ -12,8 +15,6 @@ const EditUserForm = ({updateUser, isShown, currentUser}) => {
         setUser({ ...user, [name]: value })
         
     }
-
-    
 
     return (
         <Modal show={isShown} centered>
@@ -27,31 +28,31 @@ const EditUserForm = ({updateUser, isShown, currentUser}) => {
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control as="input"
-                            type="text" name="name" value={currentUser?.name} onChange={handleInputChange}>
+                            type="text" name="name" value={user?.name} onChange={handleInputChange}>
                         </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Username</Form.Label>
                         <Form.Control as="input"
-                            type="text" name="username" value={currentUser?.username} onChange={handleInputChange}>
+                            type="text" name="username" value={user?.username} onChange={handleInputChange}>
                         </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Email</Form.Label>
                         <Form.Control as="input"
-                            type="email" name="email" value={currentUser?.email} onChange={handleInputChange}>
+                            type="email" name="email" value={user?.email} onChange={handleInputChange}>
                         </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Contact No.</Form.Label>
                         <Form.Control as="input"
-                            type="text" name="contactNo" value={currentUser?.contactNo} onChange={handleInputChange}>
+                            type="text" name="contactNo" value={user?.contactNo} onChange={handleInputChange}>
                         </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Venue</Form.Label>
                         <Form.Control as="select"
-                            className='custom-select' name="status" value={currentUser?.status} onChange={handleInputChange}>
+                            className='custom-select' name="status" value={user?.status} onChange={handleInputChange}>
                             <option value='default' disabled> Choose a status ... </option>
                             <option value="Active"> Active </option>
                             <option value="Inactive"> Inactive</option>
@@ -60,7 +61,7 @@ const EditUserForm = ({updateUser, isShown, currentUser}) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" type="button" onClick={() => updateUser(currentUser.id, user)}>
+                    <Button variant="primary" type="button" onClick={() => updateUser(user.id, user)}>
                         Submit 
                     </Button>
                 </Modal.Footer>

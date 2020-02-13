@@ -59,7 +59,11 @@ const User = () => {
 	}
 
 	const updateUser = (id, updatedUser) => {
-		setUsers(users.map(user => (user.id === id ? updatedUser : user)))
+        setUsers(users.map(user => (user.id === id ? updatedUser : user)))
+        setUiState({
+            ...uiState,
+            showUpdateModal: false
+          });
 	}
     
     const onCreateRequest = () => {
