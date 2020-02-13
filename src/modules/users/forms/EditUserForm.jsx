@@ -1,23 +1,21 @@
-import React, { useState, useEffect, setState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form, } from 'react-bootstrap';
 
-const EditUserForm = ({updateUser, isShown, currentUser}) => {
+const EditUserForm = props => {
     
-    // const initialFormState = useState(currentUser)
-    const [user, setUser] = useState([currentUser])
+    const [user, setUser] = useState([props.currentUser])
     useEffect(() => {
-        setUser(currentUser)
-      }, [currentUser]);
+        setUser(props.currentUser)
+      }, [props.currentUser]);
 
 
     const handleInputChange = event => {
         const { name, value } = event.target
         setUser({ ...user, [name]: value })
-        
     }
 
     return (
-        <Modal show={isShown} centered>
+        <Modal show={props.isShown} onHide={ props.onCancel } centered>
             <Modal.Header closeButton>
                 <h5 className="modal-title">
                     Edit User
@@ -61,7 +59,7 @@ const EditUserForm = ({updateUser, isShown, currentUser}) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" type="button" onClick={() => updateUser(user.id, user)}>
+                    <Button variant="primary" type="button" onClick={() => props.updateUser(user.id, user)}>
                         Submit 
                     </Button>
                 </Modal.Footer>

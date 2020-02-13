@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AddUserForm from './forms/AddUserForm'
 import EditUserForm from './forms/EditUserForm'
 import UserTable from './tables/UserTable'
+import { Confirmation, CustomTooltip } from 'modules';
 import { Link } from 'react-router-dom';
 
 const User = () => {
@@ -44,7 +45,8 @@ const User = () => {
 	// Setting state
 	const [ users, setUsers ] = useState(usersData)
 
-	// CRUD operations
+    // CRUD operations
+    // ADD USER
 	const addUser = user => {
 		user.id = users.length + 1
         setUsers([ ...users, user ])
@@ -52,25 +54,30 @@ const User = () => {
             ...uiState,
             showCreateModal: false
           });
-	}
+    }
 
-	const deleteUser = id => {
-		setUsers(users.filter(user => user.id !== id))
-	}
+    const onCreateRequest = () => {
+        setUiState({
+            ...uiState,
+            showCreateModal: true
+        });
+    }
 
+    const onCreateCancel = () => {
+        setUiState({
+            ...uiState,
+            showCreateModal: false,
+            targetUser: null
+        });
+    }
+
+    // UPDATE USER
 	const updateUser = (id, updatedUser) => {
         setUsers(users.map(user => (user.id === id ? updatedUser : user)))
         setUiState({
             ...uiState,
             showUpdateModal: false
           });
-	}
-    
-    const onCreateRequest = () => {
-        setUiState({
-            ...uiState,
-            showCreateModal: true
-        });
     }
 
     const onUpdateRequest = (user) => {
@@ -81,24 +88,52 @@ const User = () => {
         });
     }
 
-      const onCreateCancel = () => {
+    const onUpdateCancel = () => {
+        setUiState({
+            ...uiState,
+            showUpdateModal: false,
+            targetUser: null
+        });
+    }
+
+    // DELETE USER
+    const onDeleteRequest = (id) => {
         setUiState({
           ...uiState,
-          showCreateModal: false,
+          showDeleteModal: true,
+          targetUser: users[id]
+        });
+    }
+
+    const onDeleteCancel = () => {
+        setUiState({
+          ...uiState,
+          showDeleteModal: false,
           targetUser: null
         });
-      }
-
+    }
+    
+    const onDeleteSuccess = () => {
+        setUsers(users.filter(user => user.id !== uiState.targetUser.id))
+        setUiState({
+          ...uiState,
+          showDeleteModal: false,
+          targetUser: null
+        });
+    }
+    
 	return (
         <section>
             <div className="container">
                 <h1>Users</h1>
                 <Link to="#" className="float over-accordion" onClick={onCreateRequest}>
-                <i className="fa fa-plus my-float"></i>
+                    <CustomTooltip placement="top" value="Add User">
+                        <i className="fa fa-plus my-float"></i>
+                    </CustomTooltip>
                </Link>
                 <div className="flex-row">
                     <div className="flex-large">
-                        <UserTable users={users} onUpdateRequest={onUpdateRequest} deleteUser={deleteUser} />
+                        <UserTable users={users} onUpdateRequest={onUpdateRequest} deleteUser={onDeleteRequest} />
                     </div>
                 </div>
             </div>
@@ -110,8 +145,21 @@ const User = () => {
             <EditUserForm
                 updateUser={updateUser}
                 isShown={uiState.showUpdateModal && uiState.targetUser != null}
+                onCancel={onUpdateCancel}
                 currentUser={uiState.targetUser}>
             </EditUserForm>
+            <Confirmation
+                title="Delete User"
+                isShown={uiState.showDeleteModal && uiState.targetUser != null}
+                onCancel={onDeleteCancel}
+                onConfirm={onDeleteSuccess}>
+                {
+                    uiState.targetUser ? 
+                    <>
+                    Are you sure you want to delete user {uiState.targetUser.name}?
+                    </> : ''
+                }
+            </Confirmation>
       </section>
 	)
 }
