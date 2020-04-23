@@ -4,8 +4,7 @@ import Home from './home/Home'
 import Login from './login/Login'
 import Registration from './registration/Registration'
 import User from './users/User'
-import Venues from './venues/Venues'
-import VenuePage from './venues/VenuePage'
+import Venue from './venues/Venue'
 import Reservation from './reservation/Reservation'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,8 +18,7 @@ export default function Main() {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Registration} />
       <Route path="/users" component={User} />
-      <Route path="/venues" component={Venues} />
-      <Route path="/venue/:id" component={VenuePage} />
+      <Route path="/venues" component={Venue} />
       <Route path="/reservation" component={Reservation} />
     </Switch>
   )
