@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Modal, Button } from 'react-bootstrap';
 
-const Confirmation = ({ title, isShown, onCancel, onConfirm, children }) => {
+const Confirmation = ({ title, isShown, onCancel, onConfirm, children } : any) => {
     return (
         <Modal show={ isShown } onHide={ onCancel } centered>
             <Modal.Header closeButton>

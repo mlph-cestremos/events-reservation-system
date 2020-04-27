@@ -39,7 +39,7 @@ const Reservation = () => {
     }
   ];
 
-  const onDeleteRequest = (id) => {
+  const onDeleteRequest = (id:any) => {
     setUiState({
       ...uiState,
       showDeleteModal: true,
@@ -63,7 +63,7 @@ const Reservation = () => {
     });
   }
 
-  const onUpdateRequest = (id) => {
+  const onUpdateRequest = (id:any) => {
     setUiState({
       ...uiState,
       showUpdateModal: true,
@@ -90,7 +90,7 @@ const Reservation = () => {
     });
   }
 
-  const onCreateRequest = (id) => {
+  const onCreateRequest = (id:any) => {
     setUiState({
       ...uiState,
       showCreateModal: true,
