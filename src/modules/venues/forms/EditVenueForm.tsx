@@ -23,7 +23,8 @@ const EditVenueForm = props => {
             </Modal.Header>
             <Form>
                 <Modal.Body>
-                    <Form.Group>
+                    {/* TODO: create entity vanue first */}
+                    {/* <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control as="input"
                             type="text" name="name" value={venue?.name || '' } onChange={handleInputChange}>
@@ -40,10 +41,10 @@ const EditVenueForm = props => {
                         <Form.Control as="input"
                             type="number" name="noOfRooms" value={venue?.noOfRooms || ''} onChange={handleInputChange}>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" type="button" onClick={() => props.updateVenue(venue.id, venue)}>
+                    <Button variant="primary" type="button" onClick={() => props.updateVenue(1, venue)}>
                         Submit 
                     </Button>
                 </Modal.Footer>

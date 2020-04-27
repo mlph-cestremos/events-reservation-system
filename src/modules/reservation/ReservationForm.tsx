@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button, Form, Col } from 'react-bootstrap';
 import { FormControl } from 'modules';
 
-const ReservationForm = ({isNew, isShown, onCancel, onSave}) => {
+const ReservationForm = ({isNew, isShown, onCancel, onSave} :any) => {
 
   const onClear = () => {
 
@@ -21,23 +21,23 @@ const ReservationForm = ({isNew, isShown, onCancel, onSave}) => {
             <Form.Label>
               Date
             </Form.Label>
-            <FormControl.DateTime dateFormat={true}>
-            </FormControl.DateTime>
+            {/* <FormControl.DateTime dateFormat={true}>
+            </FormControl.DateTime> */}
           </Form.Group>
           <Form.Row>
           <Form.Group as={Col}>
             <Form.Label>
               Time From
               </Form.Label>
-              <FormControl.DateTime dateFormat={false} timeFormat={'h:mm a'}>
-              </FormControl.DateTime>
+              {/* <FormControl.DateTime dateFormat={false} timeFormat={'h:mm a'}>
+              </FormControl.DateTime> */}
             </Form.Group>
             <Form.Group as={Col}>
               <Form.Label>
                 Time To
               </Form.Label>
-              <FormControl.DateTime dateFormat={false} timeFormat={'h:mm a'}>
-              </FormControl.DateTime>
+              {/* <FormControl.DateTime dateFormat={false} timeFormat={'h:mm a'}>
+              </FormControl.DateTime> */}
             </Form.Group>
           </Form.Row>
 

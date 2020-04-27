@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
 import "./Registration.css";
 
-export default function Registration(props) {
+export default function Registration(props:any) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
@@ -10,7 +10,7 @@ export default function Registration(props) {
       return email.length > 0 && password.length > 0;
     }
   
-    function handleSubmit(event) {
+    function handleSubmit(event:any) {
       event.preventDefault();
     }
   
@@ -19,7 +19,7 @@ export default function Registration(props) {
       <div className="Registration">
         <h3>Registration</h3>
         <form onSubmit={handleSubmit}>
-          <Form.Group controlId="email" bsSize="large">
+          <Form.Group controlId="email">
             <FormControl
               autoFocus
               type="email"
@@ -27,14 +27,14 @@ export default function Registration(props) {
               onChange={e => setEmail(e.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId="password" bsSize="large">
+          <Form.Group controlId="password">
             <FormControl
               value={password}
               onChange={e => setPassword(e.target.value)}
               type="password"
             />
           </Form.Group>
-          <Button block bsSize="large" disabled={!validateForm()} type="submit">
+          <Button block disabled={!validateForm()} type="submit">
             Register
           </Button>
         </form>

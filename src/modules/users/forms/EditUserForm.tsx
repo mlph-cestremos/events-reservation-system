@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form, } from 'react-bootstrap';
 
-const EditUserForm = props => {
+const EditUserForm = (props:any) => {
     
     const [user, setUser] = useState([props.currentUser])
     useEffect(() => {
@@ -23,7 +23,8 @@ const EditUserForm = props => {
             </Modal.Header>
             <Form>
                 <Modal.Body>
-                    <Form.Group>
+                    {/* TODO : create entity user first */}
+                    {/* <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control as="input"
                             type="text" name="name" value={user?.name || '' } onChange={handleInputChange}>
@@ -55,11 +56,11 @@ const EditUserForm = props => {
                             <option value="Active"> Active </option>
                             <option value="Inactive"> Inactive</option>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" type="button" onClick={() => props.updateUser(user.id, user)}>
+                    <Button variant="primary" type="button" onClick={() => props.updateUser(1, user)}>
                         Submit 
                     </Button>
                 </Modal.Footer>
