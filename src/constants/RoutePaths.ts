@@ -5,8 +5,8 @@ export default {
 
     MAIN: '/eo',
     DASHBOARD: '/eo/dashboard',
-    USER: 'eo/user',
-    VENUE: 'eo/venue',
-    RESERVATION: 'eo/reservation'
+    USER: '/eo/user',
+    VENUE: '/eo/venue',
+    RESERVATION: '/eo/reservation'
 
 } 
