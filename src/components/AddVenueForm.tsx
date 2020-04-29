@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form, } from 'react-bootstrap';
 
-const AddVenueForm = props => {
+export default function AddVenueForm (props) {
 
     const initialFormState = { id: null, name: '', location: '', noOfRooms: '' }
     const [venue, setVenue] = useState(initialFormState)
@@ -52,4 +52,3 @@ const AddVenueForm = props => {
     )
 }
 
-export default AddVenueForm;

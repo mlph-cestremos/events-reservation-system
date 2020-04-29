@@ -1,10 +1,11 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CustomTooltip } from 'modules';
+import { CustomTooltip } from 'components';
 
-const VenueTable = props => (
+export default function VenueTable (props) {
   
+  return (
   <Table striped bordered hover>
     <thead>
       <tr>
@@ -44,6 +45,5 @@ const VenueTable = props => (
         )}
     </tbody>
   </Table>
-)
-
-export default VenueTable
+  )
+}

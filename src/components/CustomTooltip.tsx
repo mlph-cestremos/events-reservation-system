@@ -2,7 +2,7 @@ import React from 'react';
 
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-const CustomTooltip = ({ placement, value, children } : any) => {
+export default function CustomTooltip ({ placement, value, children } : any) {
     return (
         <OverlayTrigger 
             key={ value } placement={ placement }
@@ -16,5 +16,3 @@ const CustomTooltip = ({ placement, value, children } : any) => {
     );
 
 };
-
-export default CustomTooltip;

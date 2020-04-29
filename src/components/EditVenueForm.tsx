@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form, } from 'react-bootstrap';
 
-const EditVenueForm = props => {
+export default function EditVenueForm (props) {
     
     const [venue, setVenue] = useState([props.currentVenue])
     useEffect(() => {
@@ -53,5 +53,3 @@ const EditVenueForm = props => {
 
     )
 }
-
-export default EditVenueForm;

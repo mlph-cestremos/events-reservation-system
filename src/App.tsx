@@ -1,9 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import RoutePaths from 'constants/RoutePaths'
-import Login from 'modules/login/Login'
-import Registration from 'modules/Registration/Registration'
-import { MainScreen } from 'containers'
+import { MainScreen, Login, Registration } from 'containers'
 
 export default function App() {
 
