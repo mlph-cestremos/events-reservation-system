@@ -2,8 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import RoutePaths from 'constants/RoutePaths'
 import Login from 'modules/login/Login'
-import Registration from 'modules/registration/Registration'
-import MainScreen from 'containers/MainScreen'
+import Registration from 'modules/Registration/Registration'
+import { MainScreen } from 'containers'
 
 export default function App() {
 
@@ -14,7 +14,7 @@ export default function App() {
           <Route path={ RoutePaths.LOGIN } component={ Login }></Route>
           <Route path={ RoutePaths.REGISTER } component={ Registration }></Route>
           <Route path={ RoutePaths.MAIN } component={ MainScreen }></Route>
-          <Redirect exact from="/" to="login" />
+          <Redirect exact from={ RoutePaths.BASE }  to={ RoutePaths.LOGIN } />
         </Switch>
       </Router>
       

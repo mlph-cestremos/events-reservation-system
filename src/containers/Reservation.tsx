@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ReservationContainer = () => {
+export default function ReservationContainer () {
     return (
         <h2> This is Reservation Container</h2>
     )
