@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, Form, Col } from 'react-bootstrap';
-import { FormControl } from 'modules';
+import { FormControl } from 'components';
 
 const ReservationForm = ({isNew, isShown, onCancel, onSave} :any) => {
 

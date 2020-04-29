@@ -1,10 +1,10 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CustomTooltip } from 'modules';
+import { CustomTooltip } from 'components';
 
-const UserTable = props => (
-  
+export default function UserTable (props ) {
+  return(
   <Table striped bordered hover>
     <thead>
       <tr>
@@ -50,4 +50,4 @@ const UserTable = props => (
   </Table>
 )
 
-export default UserTable
+}

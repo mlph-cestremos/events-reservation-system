@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Navbar} from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
-import "./Navigation.css";
 import RoutePaths from 'constants/RoutePaths';
 
-const NavBar = () => {
+export default function Navigation () {
     return (
     <Navbar bg="dark" variant="dark" expand="lg">
         <Navbar.Brand><Link to='/'><img src="/../img/event-organizer.png" height="45px" alt="Event Organizer"/></Link></Navbar.Brand>
@@ -18,13 +17,3 @@ const NavBar = () => {
     </Navbar>
     )
 }
-
-class Navigation extends Component {
-    render() {
-        return (
-            <NavBar />
-        )
-    }
-}
-
-export default Navigation
