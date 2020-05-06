@@ -1,17 +1,18 @@
 import React from 'react';
 
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { CustomTooltipProps } from 'entities/CustomTooltipProps';
 
-export default function CustomTooltip ({ placement, value, children } : any) {
+export default function CustomTooltip ( props : CustomTooltipProps) {
     return (
         <OverlayTrigger 
-            key={ value } placement={ placement }
+            key={ props.value } placement={ props.placement }
             overlay={ 
-                <Tooltip id={ `tooltip-${value}` }>
-                    { value }
+                <Tooltip id={ `tooltip-${props.value}` }>
+                    { props.value }
                 </Tooltip> 
             }>
-            { children }
+            { props.children }
         </OverlayTrigger>
     );
 

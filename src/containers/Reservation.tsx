@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Confirmation, ReservationForm, ReservationTable } from 'components';
+import { Confirmation, ReservationForm, ReservationTable, CustomTooltip } from 'components';
 import { Link } from 'react-router-dom';
 import { Reservation } from 'entities/Reservation';
 
@@ -129,7 +129,7 @@ export default function ReservationContainer () {
     reservation.id = reservations.length
     reservations.push(reservation)
     setReservations(reservations)
-    console.log(reservations)
+
     setUiState({
       ...uiState,
       showCreateModal: false,
@@ -143,7 +143,10 @@ export default function ReservationContainer () {
       <div className="container">
         <h1> Reservations </h1>
         <Link to="#" className="float over-accordion" onClick={ onCreateRequest }>
-          <i className="fa fa-plus my-float"></i>
+          <CustomTooltip placement="top"
+            value="Add Reservation">
+                <i className="fa fa-plus my-float"></i>
+          </CustomTooltip>
         </Link>
 
         <ReservationTable reservations={reservations} updateRequest={onUpdateRequest} deleteRequest={onDeleteRequest}/>
