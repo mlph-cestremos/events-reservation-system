@@ -1,27 +1,28 @@
 import React from 'react';
 
 import { Modal, Button } from 'react-bootstrap';
+import { ConfirmationProps } from 'entities/ConfirmationProps';
 
-export default function Confirmation ({ title, isShown, onCancel, onConfirm, children } : any) {
+export default function Confirmation ( props : ConfirmationProps) {
     return (
-        <Modal show={ isShown } onHide={ onCancel } centered>
+        <Modal show={ props.isShown } onHide={ props.onCancel } centered>
             <Modal.Header closeButton>
                 <h5 className="modal-title">
-                    { title }
+                    { props.title }
                 </h5>
             </Modal.Header>
             <Modal.Body>
-               { children }
+               { props.children }
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="dark"
                     type="button"
-                    onClick={ () => onCancel() }>
+                    onClick={ () => props.onCancel() }>
                     No
                 </Button>
                 <Button variant="primary" 
                     type="button"
-                    onClick={ () => onConfirm() }>
+                    onClick={ () => props.onConfirm() }>
                     Yes
                 </Button>
             </Modal.Footer>

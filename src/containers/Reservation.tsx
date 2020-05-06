@@ -53,7 +53,7 @@ export default function ReservationContainer () {
   // Setting state
   const [ reservations, setReservations ] = useState(data)
 
-  const onDeleteRequest = (id : any) => {
+  const onDeleteRequest = (id : number) => {
     setUiState({
       ...uiState,
       showDeleteModal: true,
@@ -107,7 +107,7 @@ export default function ReservationContainer () {
     });
   }
 
-  const onCreateRequest = (id : any) => {
+  const onCreateRequest = () => {
     setUiState({
       ...uiState,
       showCreateModal: true,
