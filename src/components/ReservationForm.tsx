@@ -1,43 +1,120 @@
-import React from 'react';
-import { Modal, Button, Form, Col } from 'react-bootstrap';
-import { FormControl } from 'components';
+import React, { useState, useEffect } from 'react';
+import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
+import DatePicker from "react-datepicker";
+import { ReservationFormProps } from 'entities/ReservationFormProps';
 
-const ReservationForm = ({isNew, isShown, onCancel, onSave} :any) => {
+export default function ReservationForm ( props : ReservationFormProps ) {
+
+  const [form, setState] = useState({
+    id :  props.targetReservation.id,
+    reservationDate : props.targetReservation.reservationDate,
+    timeFrom : props.targetReservation.timeFrom,
+    timeTo: props.targetReservation.timeTo,
+    reservee : props.targetReservation.reservee,
+    venue : props.targetReservation.venue
+  })
+
+  useEffect(() => {
+    setState({
+      id :  props.targetReservation.id,
+      reservationDate : props.targetReservation.reservationDate,
+      timeFrom : props.targetReservation.timeFrom,
+      timeTo: props.targetReservation.timeTo,
+      reservee : props.targetReservation.reservee,
+      venue : props.targetReservation.venue
+    })
+  }, [
+    props.targetReservation.id, props.targetReservation.reservationDate,
+    props.targetReservation.timeFrom, props.targetReservation.timeTo,
+    props.targetReservation.reservee, props.targetReservation.venue
+  ]);
+
+  const updateField = e => {
+    setState({
+      ...form,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  const changeReservationDate = (date : Date) => {
+    setState({
+      ...form,
+      reservationDate : date
+    })
+  }
+
+  const changeTimeFrom = (date : Date) => {
+    setState({
+      ...form,
+      timeFrom : date.getTime()
+    })
+  }
+
+  const changeTimeTo = (date : Date) => {
+    setState({
+      ...form,
+      timeTo : date.getTime()
+    })
+  }
 
   const onClear = () => {
-
+    setState({
+      ...form,
+      reservationDate : new Date(),
+      timeFrom : null,
+      timeTo: null,
+      reservee : '',
+      venue : ''
+    })
   }
 
   return(
-    <Modal show={ isShown } onHide={ onCancel } centered>
+    <Modal show={ props.isShown } onHide={ props.onCancel } centered>
       <Modal.Header closeButton>
         <h5 className="modal-title">
-            {isNew ? 'Create' : 'Update'} Reservation
+            {props.isNew ? 'Create' : 'Update'} Reservation
         </h5>
       </Modal.Header>
       <Modal.Body>
-        <Form noValidate onSubmit={onSave}>
-          <Form.Group>
-            <Form.Label>
+        <Form noValidate>
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>
               Date
             </Form.Label>
-            {/* <FormControl.DateTime dateFormat={true}>
-            </FormControl.DateTime> */}
+            <DatePicker
+              className="form-control"
+              selected = { form.reservationDate || ""}
+              minDate = { new Date () }
+              onChange = { changeReservationDate }>
+            </DatePicker>
           </Form.Group>
+
           <Form.Row>
           <Form.Group as={Col}>
             <Form.Label>
               Time From
               </Form.Label>
-              {/* <FormControl.DateTime dateFormat={false} timeFormat={'h:mm a'}>
-              </FormControl.DateTime> */}
+              <DatePicker name="timeFrom"
+                className="form-control"
+                selected = { form.timeFrom || ""}
+                showTimeSelect
+                showTimeSelectOnly
+                dateFormat="h:mm aa"
+                onChange = { changeTimeFrom }>
+            </DatePicker>
             </Form.Group>
             <Form.Group as={Col}>
               <Form.Label>
                 Time To
               </Form.Label>
-              {/* <FormControl.DateTime dateFormat={false} timeFormat={'h:mm a'}>
-              </FormControl.DateTime> */}
+              <DatePicker name="timeTo"
+                className="form-control"
+                selected = { form.timeTo || ""}
+                showTimeSelect
+                showTimeSelectOnly
+                dateFormat="h:mm aa"
+                onChange = { changeTimeTo }>
+            </DatePicker>
             </Form.Group>
           </Form.Row>
 
@@ -46,8 +123,9 @@ const ReservationForm = ({isNew, isShown, onCancel, onSave} :any) => {
             <Form.Label>
               Reservee
             </Form.Label>
-            <Form.Control as="input"
-              type="text">
+            <Form.Control as="input" name="reservee"
+              type="text" value={ form.reservee || "" } 
+              onChange = { updateField }>
             </Form.Control>
           </Form.Group>
 
@@ -55,12 +133,13 @@ const ReservationForm = ({isNew, isShown, onCancel, onSave} :any) => {
             <Form.Label>
               Venue
             </Form.Label>
-            <Form.Control as="select"
-              className='custom-select'>
-              <option value='default' disabled> Choose a venue ... </option>
-              <option> Shangrila - Ballroom Hall </option>
-              <option> Megatrade Hall A </option>
-              <option> Grid X Griddle </option>
+            <Form.Control as="select" name="venue"
+              className='custom-select' value={ form.venue || "" }
+              onChange = { updateField }>
+              <option value='' disabled> Choose a venue ... </option>
+              <option value='Shangrila - Ballroom Hall'> Shangrila - Ballroom Hall </option>
+              <option value='Megatrade Hall A'> Megatrade Hall A </option>
+              <option value='Grid X Griddle'> Grid X Griddle </option>
           </Form.Control>
           </Form.Group>
         </Form>
@@ -73,12 +152,10 @@ const ReservationForm = ({isNew, isShown, onCancel, onSave} :any) => {
         </Button>
         <Button variant="primary" 
           type="button"
-          onClick={ () => onSave() }>
+          onClick={ () => props.onSave(form) }>
           Submit
         </Button>
       </Modal.Footer>
     </Modal>
   );
 }
-
-export default ReservationForm;
