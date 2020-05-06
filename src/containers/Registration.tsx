@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
 import "./Registration.css";
 
-export default function Registration(props:any) {
+export default function Registration () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
@@ -10,7 +10,7 @@ export default function Registration(props:any) {
       return email.length > 0 && password.length > 0;
     }
   
-    function handleSubmit(event:any) {
+    function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
       event.preventDefault();
     }
   

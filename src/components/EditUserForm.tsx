@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form, } from 'react-bootstrap';
 
-export default function EditUserForm (props:any) {
+export default function EditUserForm (props) {
     
     const [user, setUser] = useState([props.currentUser])
     useEffect(() => {
