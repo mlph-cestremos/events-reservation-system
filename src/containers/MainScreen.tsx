@@ -1,8 +1,8 @@
 import React from 'react'
-import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-datetime/css/react-datetime.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import 'index.css';
 import Navigation from 'components/Navigation'
 import RoutePaths from 'constants/RoutePaths'

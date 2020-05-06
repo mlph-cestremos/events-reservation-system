@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Confirmation, ReservationForm, CustomTooltip } from 'components';
-import { Table, Button } from 'react-bootstrap';
+import { Confirmation, ReservationForm, ReservationTable } from 'components';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Reservation } from 'entities/Reservation';
 
 export default function ReservationContainer () {
     // default state
@@ -14,35 +13,51 @@ export default function ReservationContainer () {
     targetReservation: null
   });
 
+  const emptyReservation = {
+    id: '',
+    reservationDate : new Date(),
+    timeFrom : '',
+    timeTo : '',
+    reservee : '',
+    venue : '',
+    status : ''
+  }
+  
   const data = [
     { 
       id: 0,
-      reservationDate: "01/01/2020", 
+      reservationDate: new Date("06/01/2020"), 
+      timeFrom : 1588667456964,
+      timeTo : 1588674623216,
       reservee: "Katherine Villegas",
-      venue: "Shangrila - Ballroom Hall",
-      status: "Approved"
+      venue: "Shangrila - Ballroom Hall"
     },
     { 
       id: 1,
-      reservationDate: "01/02/2020", 
+      reservationDate: new Date("06/02/2020"), 
+      timeFrom : 1588640414813,
+      timeTo : 1588647646953,
       reservee: "Clarissa Estremos",
-      venue: "Megatrade Hall A",
-      status: "For Approval"
+      venue: "Megatrade Hall A"
     },
     { 
       id: 2,
-      reservationDate: "01/03/2020", 
+      reservationDate: new Date("06/03/2020"), 
+      timeFrom : 1588676401339,
+      timeTo : 1588683617562,
       reservee: "Ireene Ong",
-      venue: "Grid X Griddle",
-      status: "Cancelled"
+      venue: "Grid X Griddle"
     }
   ];
 
-  const onDeleteRequest = (id:any) => {
+  // Setting state
+  const [ reservations, setReservations ] = useState(data)
+
+  const onDeleteRequest = (id : any) => {
     setUiState({
       ...uiState,
       showDeleteModal: true,
-      targetReservation: data[id]
+      targetReservation: reservations[id]
     });
   }
 
@@ -55,6 +70,8 @@ export default function ReservationContainer () {
   }
 
   const onDeleteSuccess = () => {
+    setReservations(reservations.filter(reservation => reservation.id !== uiState.targetReservation.id))
+
     setUiState({
       ...uiState,
       showDeleteModal: false,
@@ -62,12 +79,12 @@ export default function ReservationContainer () {
     });
   }
 
-  const onUpdateRequest = (id:any) => {
+  const onUpdateRequest = (id : number) => {
     setUiState({
       ...uiState,
       showUpdateModal: true,
       isNew: false,
-      targetReservation: data[id]
+      targetReservation: reservations[id]
     });
   }
 
@@ -80,7 +97,8 @@ export default function ReservationContainer () {
     });
   }
 
-  const onUpdateSuccess = () => {
+  const onUpdateSuccess = (updatedReservation : Reservation) => {
+    setReservations(reservations.map(reservation => (reservation.id === updatedReservation.id ? updatedReservation : reservation)))
     setUiState({
       ...uiState,
       showUpdateModal: false,
@@ -89,7 +107,7 @@ export default function ReservationContainer () {
     });
   }
 
-  const onCreateRequest = (id:any) => {
+  const onCreateRequest = (id : any) => {
     setUiState({
       ...uiState,
       showCreateModal: true,
@@ -107,7 +125,11 @@ export default function ReservationContainer () {
     });
   }
 
-  const onCreateSuccess = () => {
+  const onCreateSuccess = (reservation : Reservation) => {
+    reservation.id = reservations.length
+    reservations.push(reservation)
+    setReservations(reservations)
+    console.log(reservations)
     setUiState({
       ...uiState,
       showCreateModal: false,
@@ -118,60 +140,27 @@ export default function ReservationContainer () {
 
   return (
     <section>
-      <h1> Reservations </h1>
-      <Link to="#" className="float over-accordion" onClick={onCreateRequest}>
-        <i className="fa fa-plus my-float"></i>
-      </Link>
+      <div className="container">
+        <h1> Reservations </h1>
+        <Link to="#" className="float over-accordion" onClick={ onCreateRequest }>
+          <i className="fa fa-plus my-float"></i>
+        </Link>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th> Reservation Date </th>
-            <th> Reservee </th>
-            <th> Venue </th>
-            <th> Status </th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            data.map(reservation => 
-              <tr key={reservation.id}>
-                <td> {reservation.reservationDate} </td>
-                <td> {reservation.reservee} </td>
-                <td> {reservation.venue} </td>
-                <td> {reservation.status} </td>
-                <td align="center">
-                <Button variant="link" onClick={ () => onUpdateRequest(reservation.id) }>
-                    <CustomTooltip placement="top"
-                      value="Update Reservation">
-                        <FontAwesomeIcon icon='edit'></FontAwesomeIcon>
-                      </CustomTooltip>
-                  </Button>
-                  <Button variant="link" onClick={ () => onDeleteRequest(reservation.id) }>
-                    <CustomTooltip placement="top"
-                      value="Delete Reservation">
-                        <FontAwesomeIcon icon='trash'></FontAwesomeIcon>
-                      </CustomTooltip>
-                  </Button>
-                </td>
-              </tr>
-            )
-          }
-        </tbody>
-      </Table>
+        <ReservationTable reservations={reservations} updateRequest={onUpdateRequest} deleteRequest={onDeleteRequest}/>
+      </div>
 
       <Confirmation
         title="Delete Reservation"
-        isShown={uiState.showDeleteModal && uiState.targetReservation}
+        isShown={uiState.showDeleteModal && uiState.targetReservation ? true : false}
         onCancel={onDeleteCancel}
         onConfirm={onDeleteSuccess}>
           {
             uiState.targetReservation ? 
             <>
             You are going to delete a reservation with the following details: <br/><br/>
-            Reservation Date: {uiState.targetReservation.reservee} <br/>
-            Reservee: {uiState.targetReservation.reservationDate} <br/>
+            Reservation Date: {uiState.targetReservation.reservationDate.toLocaleDateString()} <br/>
+            Reservation Time: {new Date(uiState.targetReservation.timeFrom).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + " - "+ new Date(uiState.targetReservation.timeTo).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <br />
+            Reservee: {uiState.targetReservation.reservee} <br/>
             Venue: {uiState.targetReservation.venue} <br/><br/>
             Are you sure you want to delete?
             </> : ''
@@ -179,20 +168,12 @@ export default function ReservationContainer () {
       </Confirmation>
 
       <ReservationForm
-        isNew={uiState.isNew}
-        isShown={uiState.showUpdateModal && uiState.targetReservation}
-        onCancel={onUpdateCancel}
-        onSave={onUpdateSuccess}
-      >
-      </ReservationForm>
-
-      <ReservationForm
-        isNew={uiState.isNew}
-        isShown={uiState.showCreateModal && !uiState.targetReservation}
-        onCancel={onCreateCancel}
-        onSave={onCreateSuccess}
-      >
-      </ReservationForm>
+        isNew={ uiState.targetReservation ? false : true }
+        isShown={ uiState.showUpdateModal || uiState.showCreateModal }
+        targetReservation={ uiState.targetReservation ? uiState.targetReservation : emptyReservation }
+        onCancel= { uiState.targetReservation ? onUpdateCancel : onCreateCancel }
+        onSave={ uiState.targetReservation ? onUpdateSuccess : onCreateSuccess }
+      />
     </section>
   )
 }
