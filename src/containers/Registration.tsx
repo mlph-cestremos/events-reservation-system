@@ -2,12 +2,37 @@ import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
 import "./Registration.css";
 
+import {FieldValidation}   from "../components/validation";
+
 export default function Registration () {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+   
+    let fieldVal =  FieldValidation(
+      [
+        {
+          value:email,
+          name:"email",
+          parameter:{
+            isEmpty:false
+          }
+        },
+        {
+          value:password,
+           name:"password",
+          parameter:{
+            isEmpty:false,
+            min:4,
+         //   max:10,
+          }
+        }
+      ]
+    );
   
+
     function validateForm() {
-      return email.length > 0 && password.length > 0;
+      return fieldVal.isValid() ; //email.length > 0 && password.length > 0;
     }
   
     function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
@@ -34,7 +59,9 @@ export default function Registration () {
               type="password"
             />
           </Form.Group>
-          <Button block disabled={!validateForm()} type="submit">
+          {fieldVal.message()}
+           
+          <Button block disabled={!fieldVal.isValid()} type="submit">
             Register
           </Button>
         </form>

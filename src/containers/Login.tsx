@@ -1,11 +1,36 @@
 import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
+
+import {FieldValidation}   from "../components/validation";
+
 import "./Login.css";
 
 export default function Login () {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
+   let fieldVal =  FieldValidation(
+      [
+        {
+          value:email,
+          name:"email",
+          parameter:{
+            isEmpty:false
+          }
+        },
+        {
+          value:password,
+           name:"password",
+          parameter:{
+            isEmpty:false,
+            min:4,
+         //   max:10,
+          }
+        }
+      ]
+    );
+    
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
@@ -33,7 +58,7 @@ export default function Login () {
             type="password"
           />
         </Form.Group>
-        <Button block disabled={!validateForm()} type="submit">
+        <Button block disabled={!fieldVal.isValid()} type="submit">
           Login
         </Button>
       </form>
