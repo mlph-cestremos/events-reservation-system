@@ -3,16 +3,12 @@ import { Button, FormControl, Form } from "react-bootstrap";
 import "./Registration.css";
 
 export default function Registration () {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-   
   
     function validateForm() {
       return email.length > 0 && password.length > 0;
-    }  
-
-   
+    }
   
     function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
       event.preventDefault();
@@ -38,8 +34,6 @@ export default function Registration () {
               type="password"
             />
           </Form.Group>
-         
-           
           <Button block disabled={!validateForm()} type="submit">
             Register
           </Button>
