@@ -12,7 +12,7 @@ class FieldValidations{
 	}
 	__isEmpty(value,parameter){
 		if(typeof(parameter['isEmpty']) != "undefined"){
-			if(parameter['isEmpty'] ==false && globalValue['isvalid'] ==true){
+			if(!parameter['isEmpty']  && globalValue['isvalid'] ){
 				globalValue['isvalid'] = value.length >0;
 
 			}
@@ -33,7 +33,7 @@ class FieldValidations{
 		 	max_len = parameter['max'];
 		}
 
-		if(globalValue['isvalid'] ==true){
+		if(globalValue['isvalid'] ){
 			if(is_max){
 				globalValue['isvalid'] = value.length >=min_len && value.length <=max_len;
 			}else{
