@@ -24,16 +24,12 @@ export default function Login () {
            name:"password",
           parameter:{
             isEmpty:false,
-            min:4,
-         //   max:10,
+         
           }
         }
       ]
     );
     
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
 
   function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
     event.preventDefault();

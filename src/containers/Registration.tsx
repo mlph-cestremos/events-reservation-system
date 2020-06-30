@@ -24,16 +24,14 @@ export default function Registration () {
           parameter:{
             isEmpty:false,
             min:4,
-         //   max:10,
+            max:15,
           }
         }
       ]
     );
   
 
-    function validateForm() {
-      return fieldVal.isValid() ; //email.length > 0 && password.length > 0;
-    }
+   
   
     function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
       event.preventDefault();

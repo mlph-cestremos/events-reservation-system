@@ -60,7 +60,7 @@ class FieldValidations{
 	message(){
 		
 		
-		return ( globalValue['message'] );//globalValue['value']);
+		return ( globalValue['message'] );
 	}
 	isValid(){
 		
@@ -70,5 +70,5 @@ class FieldValidations{
 
 export default function  FieldValidation (value){
 	const fields =new FieldValidations(value); 
-	return 	fields;//(fields.message()+"--");
+	return 	fields;
 };
