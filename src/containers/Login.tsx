@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
 
-import {FieldValidation}   from "../components/validation";
+import {FieldValidation}   from "components/validation";
 
 import "./Login.css";
 
