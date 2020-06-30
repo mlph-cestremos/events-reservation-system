@@ -10,7 +10,7 @@ export default function Login () {
   const [password, setPassword] = useState("");
 
 
-   let fieldVal =  FieldValidation(
+   const fieldVal =  FieldValidation(
       [
         {
           value:email,
