@@ -24,6 +24,7 @@ export default function Login () {
            name:"password",
           parameter:{
             isEmpty:false,
+            min:6
          
           }
         }
@@ -32,6 +33,8 @@ export default function Login () {
     
 
   function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
+    event.currentTarget.action = "eo/";
+    event.currentTarget.onSubmit();
     event.preventDefault();
   }
 
