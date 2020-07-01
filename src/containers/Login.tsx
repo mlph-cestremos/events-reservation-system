@@ -1,16 +1,40 @@
 import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
+
+import {FieldValidation}   from "components/validation";
+
 import "./Login.css";
 
 export default function Login () {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
+
+   const fieldVal =  FieldValidation(
+      [
+        {
+          value:email,
+          name:"email",
+          parameter:{
+            isEmpty:false
+          }
+        },
+        {
+          value:password,
+           name:"password",
+          parameter:{
+            isEmpty:false,
+            min:6
+         
+          }
+        }
+      ]
+    );
+    
 
   function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
+    event.currentTarget.action = "eo/";
+    event.currentTarget.onSubmit();
     event.preventDefault();
   }
 
@@ -33,7 +57,7 @@ export default function Login () {
             type="password"
           />
         </Form.Group>
-        <Button block disabled={!validateForm()} type="submit">
+        <Button block disabled={!fieldVal.isValid()} type="submit">
           Login
         </Button>
       </form>
