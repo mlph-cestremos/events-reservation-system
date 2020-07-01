@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
 
 import {FieldValidation}   from "components/validation";
+import RoutePaths from 'constants/RoutePaths';
 
 import "./Login.css";
 
@@ -33,7 +34,7 @@ export default function Login () {
     
 
   function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
-    event.currentTarget.action = "eo/";
+    event.currentTarget.action = RoutePaths.MAIN;
     event.currentTarget.onSubmit();
     event.preventDefault();
   }
@@ -62,7 +63,7 @@ export default function Login () {
           Login
         </Button>
         <div className="linkRedirect">
-        <a href="register/">Dont have an account yet? Sign Up here</a>
+        <a href={RoutePaths.REGISTER}>Dont have an account yet? Sign Up here</a>
         </div>
       </form>
     </div>
