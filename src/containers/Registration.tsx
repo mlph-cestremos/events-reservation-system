@@ -131,9 +131,9 @@ export default function Registration () {
             />
           </Form.Group>
           
-          <Form.Group controlId="s">
+          <Form.Group controlId="roles">
           <Dropdown>
-            <Dropdown.Toggle  id="dropdown-basics"
+            <Dropdown.Toggle  id="roles"
               >
                 {roles}  
             </Dropdown.Toggle>
