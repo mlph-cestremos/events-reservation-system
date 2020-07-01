@@ -57,9 +57,13 @@ export default function Login () {
             type="password"
           />
         </Form.Group>
+        
         <Button block disabled={!fieldVal.isValid()} type="submit">
           Login
         </Button>
+        <div className="linkRedirect">
+        <a href="register/">Dont have an account yet? Sign Up here</a>
+        </div>
       </form>
     </div>
   );
