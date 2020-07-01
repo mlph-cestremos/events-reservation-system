@@ -18,6 +18,24 @@ class FieldValidations{
 			}
 		}
 	}
+	__EqualTo(value,parameter){
+		if(typeof(parameter['equalto']) != "undefined"){
+			if( globalValue['isvalid'] ){
+				
+				let value_return = "";
+				globalValue['value'].forEach((k,v) => {
+					
+					if(k['name'] === parameter["equalto"]){
+						
+						value_return =k['value']
+					}
+				});
+				 
+				globalValue['isvalid'] = value===value_return ;
+
+			}
+		}
+	}
 
 	__minMaxChar(value,parameter){
 		
@@ -54,6 +72,7 @@ class FieldValidations{
 			
 			self.__isEmpty( value['value'],value['parameter'] );
 			self.__minMaxChar( value['value'],value['parameter'] );
+			self.__EqualTo( value['value'],value['parameter'] );
 
 		}
 	}
