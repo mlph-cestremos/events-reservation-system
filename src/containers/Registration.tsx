@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
-import "./Registration.css";
+import styled from 'styled-components';
 
 export default function Registration () {
     const [email, setEmail] = useState("");
@@ -13,12 +13,16 @@ export default function Registration () {
     function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
       event.preventDefault();
     }
-  
+    
+    const Registration = styled.div`padding: 60px 0;`;
+    const RegistrationH3 = styled.h3`text-align: center;`;
+    const RegistrationForm = styled.h3`margin: 0 auto;
+    max-width: 320px;`;
     return (
         
-      <div className="Registration">
-        <h3>Registration</h3>
-        <form onSubmit={handleSubmit}>
+      <Registration>
+        <RegistrationH3>Registration</RegistrationH3>
+        <RegistrationForm onSubmit={handleSubmit}>
           <Form.Group controlId="email">
             <FormControl
               autoFocus
@@ -37,7 +41,7 @@ export default function Registration () {
           <Button block disabled={!validateForm()} type="submit">
             Register
           </Button>
-        </form>
-      </div>
+        </RegistrationForm>
+      </Registration>
     );
   }
