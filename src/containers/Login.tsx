@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 import {FieldValidation}   from "components/validation";
 import RoutePaths from 'constants/RoutePaths';
@@ -63,7 +64,7 @@ export default function Login () {
           Login
         </Button>
         <div className="linkRedirect">
-        <a href={RoutePaths.REGISTER}>Dont have an account yet? Sign Up here</a>
+        <Link to={RoutePaths.REGISTER}>Dont have an account yet? Sign Up here</Link>
         </div>
       </form>
     </div>
