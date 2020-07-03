@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 import {FieldValidation}   from "components/validation";
+import RoutePaths from 'constants/RoutePaths';
 
 import "./Login.css";
 
@@ -33,7 +35,7 @@ export default function Login () {
     
 
   function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
-    event.currentTarget.action = "eo/";
+    event.currentTarget.action = RoutePaths.MAIN;
     event.currentTarget.onSubmit();
     event.preventDefault();
   }
@@ -57,9 +59,13 @@ export default function Login () {
             type="password"
           />
         </Form.Group>
+        
         <Button block disabled={!fieldVal.isValid()} type="submit">
           Login
         </Button>
+        <div className="linkRedirect">
+        <Link to={RoutePaths.REGISTER}>Dont have an account yet? Sign Up here</Link>
+        </div>
       </form>
     </div>
   );
