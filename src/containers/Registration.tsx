@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button, FormControl, Form,Dropdown } from "react-bootstrap";
 import styled from 'styled-components';
 import {FieldValidation}   from "components/validation";
-
+import RoutePaths from 'constants/RoutePaths'
+import { useHistory } from "react-router-dom";
 const RegistrationDiv = styled.div`padding: 60px 0;`;
 const RegistrationH3 = styled.h3`text-align: center;`;
 const RegistrationForm = styled.form`margin: 0 auto;
@@ -10,8 +11,11 @@ max-width: 320px;`;
 
 
 
+
+
 export default function Registration () {
- 
+
+  const history = useHistory();
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -67,8 +71,9 @@ export default function Registration () {
         }
       ]
     );
-
+     
     function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
+      history.push(RoutePaths.LOGIN);
       event.preventDefault();
     }
     
