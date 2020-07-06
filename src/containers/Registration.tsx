@@ -1,27 +1,110 @@
 import React, { useState } from "react";
-import { Button, FormControl, Form } from "react-bootstrap";
-import "./Registration.css";
+import { Button, FormControl, Form,Dropdown } from "react-bootstrap";
+import styled from 'styled-components';
+import {FieldValidation}   from "components/validation";
+import RoutePaths from 'constants/RoutePaths'
+import { useHistory } from "react-router-dom";
+const RegistrationDiv = styled.div`padding: 60px 0;`;
+const RegistrationH3 = styled.h3`text-align: center;`;
+const RegistrationForm = styled.form`margin: 0 auto;
+max-width: 320px;`;
+
+
+
+
 
 export default function Registration () {
+
+  const history = useHistory();
+    const [firstname, setFirstName] = useState("");
+    const [lastname, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirm_password, setConfirmPassword] = useState("");
+    const [contactnumber, setContactNumber] = useState("");
+    const [roles, setRoles] = useState("Select role");
+    
+   
   
-    function validateForm() {
-      return email.length > 0 && password.length > 0;
-    }
-  
+    
+    const fieldVal =  FieldValidation(
+      [
+        {
+          value:firstname,
+          name:"firstname",
+          parameter:{
+            isEmpty:false
+          }
+        },
+        {
+          value:lastname,
+          name:"lastname",
+          parameter:{
+            isEmpty:false
+          }
+        },
+        {
+          value:email,
+          name:"email",
+          parameter:{
+            isEmpty:false
+          }
+        },
+        {
+          value:password,
+           name:"password",
+          parameter:{
+            isEmpty:false,
+            min:6
+         
+          }
+        },
+        {
+          value:confirm_password,
+           name:"confirm_password",
+          parameter:{
+            isEmpty:false,
+            min:6,
+            equalto:"password"
+         
+          }
+        }
+      ]
+    );
+     
     function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
+      history.push(RoutePaths.LOGIN);
       event.preventDefault();
     }
-  
+    
+
+   
+
     return (
         
-      <div className="Registration">
-        <h3>Registration</h3>
-        <form onSubmit={handleSubmit}>
-          <Form.Group controlId="email">
+      <RegistrationDiv>
+        <RegistrationH3>Registration</RegistrationH3>
+        <RegistrationForm onSubmit={handleSubmit}>
+          <Form.Group controlId="firstname">
             <FormControl
               autoFocus
+              type="text"
+              placeholder="First Name*"
+              value={firstname}
+              onChange={e => setFirstName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="lastname">
+            <FormControl
+              placeholder="Last Name*"
+              type="text"
+              value={lastname} 
+              onChange={e => setLastName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="email">
+            <FormControl
+              placeholder="Email*"
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
@@ -29,15 +112,54 @@ export default function Registration () {
           </Form.Group>
           <Form.Group controlId="password">
             <FormControl
+               placeholder="Password*"
               value={password}
               onChange={e => setPassword(e.target.value)}
               type="password"
             />
           </Form.Group>
-          <Button block disabled={!validateForm()} type="submit">
+          <Form.Group controlId="confirm-password">
+            <FormControl
+               placeholder="Confirm password"
+              value={confirm_password} 
+              onChange={e => setConfirmPassword(e.target.value)}
+              type="password"
+            />
+          </Form.Group>
+
+          <Form.Group controlId="contactnumber">
+            <FormControl
+              placeholder="Contact Number"
+              type="text"
+              value={contactnumber}
+              onChange={e => setContactNumber(e.target.value)}
+            />
+          </Form.Group>
+          
+          <Form.Group controlId="roles">
+          <Dropdown>
+            <Dropdown.Toggle  id="roles"
+              >
+                {roles}  
+            </Dropdown.Toggle>
+          
+            <Dropdown.Menu>
+              <Dropdown.Item title ="Customer"  onClick={e => setRoles(e.target.title)}
+              >Customer</Dropdown.Item>
+              <Dropdown.Item title ="Venue Provider"
+               onClick={e => setRoles(e.target.title)}>Venue Provider</Dropdown.Item>
+            
+            </Dropdown.Menu>
+          </Dropdown>
+
+          </Form.Group>
+          <Button block disabled={!fieldVal.isValid()} type="submit">
             Register
           </Button>
-        </form>
-      </div>
+        </RegistrationForm>
+      </RegistrationDiv>
     );
+    
   }
+  
+  
