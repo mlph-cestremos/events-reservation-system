@@ -66,11 +66,7 @@ function Header(props: HeaderProps) {
               </Grid>
             </Hidden>
             <Grid item xs />
-            <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
-                Go to docs
-              </Link>
-            </Grid>
+          
             <Grid item>
               <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">

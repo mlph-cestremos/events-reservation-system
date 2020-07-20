@@ -18,27 +18,27 @@ import TimerIcon from '@material-ui/icons/Timer';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 import { Omit } from '@material-ui/types';
-
+import { Link, NavLink } from 'react-router-dom'
+import RoutePaths from 'constants/RoutePaths'
 const categories = [
   {
     id: 'Develop',
     children: [
-      { id: 'Authentication', icon: <PeopleIcon />, active: true },
-      { id: 'Database', icon: <DnsRoundedIcon /> },
-      { id: 'Storage', icon: <PermMediaOutlinedIcon /> },
-      { id: 'Hosting', icon: <PublicIcon /> },
-      { id: 'Functions', icon: <SettingsEthernetIcon /> },
-      { id: 'ML Kit', icon: <SettingsInputComponentIcon /> },
+      { id: 'Dashboard', icon: <PeopleIcon />, active: true,href:RoutePaths.DASHBOARD },
+      { id: 'Venue', icon: <PeopleIcon />,active: false,href:RoutePaths.VENUE },
+      { id: 'User', icon: <PeopleIcon />,active: false,href:RoutePaths.USER },
+      { id: 'Reservation', icon: <PeopleIcon />,active: false,href:RoutePaths.RESERVATION },
+   
     ],
-  },
-  {
-    id: 'Quality',
-    children: [
-      { id: 'Analytics', icon: <SettingsIcon /> },
-      { id: 'Performance', icon: <TimerIcon /> },
-      { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
-    ],
-  },
+  }//,
+  //{
+  //  id: 'Quality',
+  //  children: [
+  //    { id: 'Analytics', icon: <SettingsIcon /> },
+  //    { id: 'Performance', icon: <TimerIcon /> },
+  //    { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
+   // ],
+  //},
 ];
 
 const styles = (theme: Theme) =>
@@ -114,10 +114,11 @@ function Navigator(props: NavigatorProps) {
                   primary: classes.categoryHeaderPrimary,
                 }}
               >
-                {id}
+                  
+               
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
+            {children.map(({ id: childId, icon, active,href }) => (
               <ListItem
                 key={childId}
                 button
@@ -129,7 +130,8 @@ function Navigator(props: NavigatorProps) {
                     primary: classes.itemPrimary,
                   }}
                 >
-                  {childId}
+                 
+                  <NavLink to={ href }>  {childId} </NavLink>
                 </ListItemText>
               </ListItem>
             ))}
