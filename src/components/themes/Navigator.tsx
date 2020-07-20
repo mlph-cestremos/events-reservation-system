@@ -24,10 +24,10 @@ const categories = [
   {
     id: 'Develop',
     children: [
-      { id: 'Dashboard', icon: <PeopleIcon />, active: true,href:RoutePaths.DASHBOARD },
-      { id: 'Venue', icon: <PeopleIcon />,active: false,href:RoutePaths.VENUE },
-      { id: 'User', icon: <PeopleIcon />,active: false,href:RoutePaths.USER },
-      { id: 'Reservation', icon: <PeopleIcon />,active: false,href:RoutePaths.RESERVATION },
+      { id: 'DASHBOARD', icon: <PeopleIcon />, active: true,href:RoutePaths.DASHBOARD },
+      { id: 'VENUE', icon: <PeopleIcon />,active: false,href:RoutePaths.VENUE },
+      { id: 'USER', icon: <PeopleIcon />,active: false,href:RoutePaths.USER },
+      { id: 'RESERVATION', icon: <PeopleIcon />,active: false,href:RoutePaths.RESERVATION },
    
     ],
   }//,
