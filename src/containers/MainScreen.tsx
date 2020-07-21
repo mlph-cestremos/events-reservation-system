@@ -16,16 +16,16 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Navigator from 'components/themes/Navigator';
-import Content from 'components/themes/Content';
-import Header from 'components/themes/Header';
+import Navigator from 'components/Navigation';
+import Content from 'components/Content';
+import Header from 'components/Header';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="">
-        Your Website
+        Event Register
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
