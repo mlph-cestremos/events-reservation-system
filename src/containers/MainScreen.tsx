@@ -1,10 +1,7 @@
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import 'react-datepicker/dist/react-datepicker.css';
-
-
 import {
   createMuiTheme,
   createStyles,
@@ -12,13 +9,8 @@ import {
   withStyles,
   WithStyles,
 } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Hidden from '@material-ui/core/Hidden';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import Navigator from 'components/Navigation';
-import Content from 'components/Content';
-import Header from 'components/Header';
+import {Link,Typography,Hidden,CssBaseline} from '@material-ui/core';
+import {Navigation,Content,Header} from 'components';
 
 function Copyright() {
   return (
@@ -188,7 +180,7 @@ function Paperbase(props: PaperbaseProps) {
         <CssBaseline />
         <nav className={classes.drawer}>
           <Hidden smUp implementation="js">
-            <Navigator
+            <Navigation
               PaperProps={{ style: { width: drawerWidth } }}
               variant="temporary"
               open={mobileOpen}
@@ -196,7 +188,7 @@ function Paperbase(props: PaperbaseProps) {
             />
           </Hidden>
           <Hidden xsDown implementation="css">
-            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+            <Navigation PaperProps={{ style: { width: drawerWidth } }} />
           </Hidden>
         </nav>
         <div className={classes.app}>
