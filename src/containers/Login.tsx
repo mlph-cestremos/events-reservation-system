@@ -2,12 +2,22 @@ import React, { useState } from "react";
 import { Button, FormControl, Form } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
+import styled from 'styled-components';
+
+
 import {FieldValidation}   from "components/validation";
 import RoutePaths from 'constants/RoutePaths';
+import { useHistory } from "react-router-dom";
 
-import "./Login.css";
+const LoginDiv = styled.div`padding: 60px 0;`;
+const LoginH3 = styled.h3`text-align: center;`;
+const LoginForm = styled.form`margin: 0 auto;
+max-width: 320px;`;
+const LinkRedirect = styled.div`text-align: center`;
+
 
 export default function Login () {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -35,15 +45,15 @@ export default function Login () {
     
 
   function handleSubmit( event:React.FormEvent<HTMLFormElement> ) {
-    event.currentTarget.action = RoutePaths.MAIN;
-    event.currentTarget.onSubmit();
+
+    history.push(RoutePaths.MAIN);
     event.preventDefault();
   }
 
   return (
-    <div className="Login">
-        <h3>Login</h3>
-      <form onSubmit={handleSubmit}>
+    <LoginDiv>
+        <LoginH3>Login</LoginH3>
+      <LoginForm onSubmit={handleSubmit}>
         <Form.Group controlId="email" >
           <FormControl
             autoFocus
@@ -63,10 +73,10 @@ export default function Login () {
         <Button block disabled={!fieldVal.isValid()} type="submit">
           Login
         </Button>
-        <div className="linkRedirect">
+        <LinkRedirect>
         <Link to={RoutePaths.REGISTER}>Dont have an account yet? Sign Up here</Link>
-        </div>
-      </form>
-    </div>
+        </LinkRedirect>
+      </LoginForm>
+    </LoginDiv>
   );
 }
