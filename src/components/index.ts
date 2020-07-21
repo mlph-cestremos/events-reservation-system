@@ -10,6 +10,9 @@ import CustomTooltip from 'components/CustomTooltip';
 import Confirmation from 'components/Confirmation';
 import Navigation from 'components/Navigation';
 
+import Content from 'components/Content';
+import Header from 'components/Header';
+
 export {
     Confirmation,
     CustomTooltip,
@@ -21,5 +24,7 @@ export {
     EditVenueForm,
     UserTable,
     AddUserForm,
-    EditUserForm
+    EditUserForm,
+    Content,
+    Header
 }
