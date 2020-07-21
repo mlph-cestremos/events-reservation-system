@@ -1,12 +1,7 @@
 import React from 'react';
-
 import {IconButton,Tooltip,TextField,Button,Grid,Paper,Typography,Toolbar,AppBar} from '@material-ui/core';
-
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-import RefreshIcon from '@material-ui/icons/Refresh';
-
-
+import {Refresh as RefreshIcon,Search as SearchIcon} from '@material-ui/icons';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import RoutePaths from 'constants/RoutePaths';
 import { DashboardContainer, UserContainer, VenueContainer, ReservationContainer } from 'containers';

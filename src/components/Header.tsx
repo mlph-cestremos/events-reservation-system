@@ -1,9 +1,6 @@
 import React from 'react';
-import HelpIcon from '@material-ui/icons/Help';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import {Notifications as NotificationsIcon,Menu as MenuIcon,Help as HelpIcon} from '@material-ui/icons';
 import {Typography,Tooltip,Toolbar,Tabs,Tab,Hidden,Grid,Button,Avatar,AppBar,IconButton} from '@material-ui/core';
-
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';

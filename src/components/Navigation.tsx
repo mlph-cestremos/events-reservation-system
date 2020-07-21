@@ -2,11 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
-import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
-
+import {People as PeopleIcon,Home as HomeIcon} from '@material-ui/icons';
 import {ListItemIcon, ListItem,ListItemText,List,Divider} from '@material-ui/core';
-
 import { Omit } from '@material-ui/types';
 import {  NavLink } from 'react-router-dom'
 import RoutePaths from 'constants/RoutePaths'
