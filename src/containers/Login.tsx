@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Button, FormControl, Form } from "react-bootstrap";
+import {  FormControl, Form } from "react-bootstrap";
+import {IconButton,Tooltip,TextField,Button,Grid,Paper,Typography,Toolbar,AppBar} from '@material-ui/core';
+
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -16,7 +20,33 @@ max-width: 320px;`;
 const LinkRedirect = styled.div`text-align: center`;
 
 
-export default function Login () {
+const styles = (theme: Theme) =>
+  createStyles({
+    paper: {
+      maxWidth: 936,
+      margin: 'auto',
+      overflow: 'hidden',
+    },
+    searchBar: {
+      borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+    },
+    searchInput: {
+      fontSize: theme.typography.fontSize,
+    },
+    block: {
+      display: 'block',
+    },
+    addUser: {
+      marginRight: theme.spacing(1),
+    },
+    contentWrapper: {
+      margin: '40px 16px',
+    },
+  });
+
+export interface ContentProps extends WithStyles<typeof styles> {}
+export default function Login ( props: ContentProps ) {
+  const { classes } = props;
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,7 +100,7 @@ export default function Login () {
           />
         </Form.Group>
         
-        <Button block disabled={!fieldVal.isValid()} type="submit">
+        <Button  disabled={!fieldVal.isValid()} type="submit" variant="contained" color="primary" >
           Login
         </Button>
         <LinkRedirect>
