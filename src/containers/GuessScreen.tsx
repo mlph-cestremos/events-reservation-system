@@ -1,7 +1,7 @@
 import React from 'react';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-datepicker/dist/react-datepicker.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'react-datepicker/dist/react-datepicker.css';
 import {
   createMuiTheme,
   createStyles,
@@ -17,7 +17,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="">
-        Event Register
+        Event Register s
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

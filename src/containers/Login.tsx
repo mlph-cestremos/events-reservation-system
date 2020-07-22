@@ -84,20 +84,30 @@ export default function Login ( props: ContentProps ) {
     <LoginDiv>
         <LoginH3>Login</LoginH3>
       <LoginForm onSubmit={handleSubmit}>
-        <Form.Group controlId="email" >
-          <FormControl
-            autoFocus
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </Form.Group>
+       
+        <TextField
+                fullWidth
+                placeholder="Email"
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                required
+                InputProps={{
+                 // disableUnderline: true,
+                 // className: classes.searchInput,
+                }}
+              />
         <Form.Group controlId="password" >
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
+         
+          <TextField
+                fullWidth
+                placeholder="Password"
+                onChange={e => setPassword(e.target.value)}
+                type="password"
+                InputProps={{
+                 // disableUnderline: true,
+                 // className: classes.searchInput,
+                }}
+              />
         </Form.Group>
         
         <Button  disabled={!fieldVal.isValid()} type="submit" variant="contained" color="primary" >
