@@ -87,7 +87,7 @@ export default function Login ( props: ContentProps ) {
        
         <TextField
                 fullWidth
-                placeholder="Email"
+                placeholder="Emails"
                 onChange={e => setEmail(e.target.value)}
                 type="email"
                 required
@@ -100,7 +100,7 @@ export default function Login ( props: ContentProps ) {
          
           <TextField
                 fullWidth
-                placeholder="Password"
+                placeholder="Passwords"
                 onChange={e => setPassword(e.target.value)}
                 type="password"
                 InputProps={{

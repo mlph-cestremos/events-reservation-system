@@ -38,17 +38,7 @@ function Content(props: ContentProps) {
 
   return (
     <Paper className={classes.paper}>
-      <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
-        <Toolbar>
-          <Grid container spacing={2} alignItems="center">
-            
-            <Grid item xs>
-            -
-            </Grid>
-            
-          </Grid>
-        </Toolbar>
-      </AppBar>
+      
       <div className={classes.contentWrapper}>
         <Typography color="textSecondary" >
         

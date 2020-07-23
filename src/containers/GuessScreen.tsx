@@ -168,11 +168,9 @@ export interface PaperbasePropsGuess extends WithStyles<typeof styles> {}
 
 function PaperbaseGuess(props: PaperbasePropsGuess) {
   const { classes } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+ 
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  
 
   return (
     <ThemeProvider theme={theme}>
