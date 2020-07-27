@@ -9,7 +9,7 @@ import ReservationTable from 'components/ReservationTable';
 import CustomTooltip from 'components/CustomTooltip';
 import Confirmation from 'components/Confirmation';
 import Navigation from 'components/Navigation';
-import GuessContent from 'components/GuessContent';
+import GuestContent from 'components/GuestContent';
 import Content from 'components/Content';
 import Header from 'components/Header';
 
@@ -27,5 +27,5 @@ export {
     EditUserForm,
     Content,
     Header,
-    GuessContent
+    GuestContent
 }

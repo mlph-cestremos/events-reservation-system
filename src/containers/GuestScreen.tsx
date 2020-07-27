@@ -10,7 +10,7 @@ import {
   WithStyles,
 } from '@material-ui/core/styles';
 import {Link,Typography,Hidden,CssBaseline} from '@material-ui/core';
-import {Navigation,GuessContent,Header} from 'components';
+import {Navigation,GuestContent,Header} from 'components';
 
 function Copyright() {
   return (
@@ -180,7 +180,7 @@ function PaperbaseGuess(props: PaperbasePropsGuess) {
         <div className={classes.app}>
           
           <main className={classes.main}>
-            <GuessContent />
+            <GuestContent />
            
           </main>
           <footer className={classes.footer}>
