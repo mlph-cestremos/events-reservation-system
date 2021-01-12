@@ -1,6 +1,7 @@
 import React from 'react';
 
-
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'react-datepicker/dist/react-datepicker.css';
 import {
   createMuiTheme,
   createStyles,
@@ -9,14 +10,14 @@ import {
   WithStyles,
 } from '@material-ui/core/styles';
 import {Link,Typography,Hidden,CssBaseline} from '@material-ui/core';
-import {Navigation,Content,Header} from 'components';
+import {Navigation,GuestContent,Header} from 'components';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="">
-        Event Register
+        Event Register s
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -163,37 +164,23 @@ const styles = createStyles({
   },
 });
 
-export interface PaperbaseProps extends WithStyles<typeof styles> {}
+export interface PaperbasePropsGuess extends WithStyles<typeof styles> {}
 
-function Paperbase(props: PaperbaseProps) {
+function PaperbaseGuess(props: PaperbasePropsGuess) {
   const { classes } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+ 
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  
 
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <CssBaseline />
-        <nav className={classes.drawer}>
-          <Hidden smUp implementation="js">
-            <Navigation
-              PaperProps={{ style: { width: drawerWidth } }}
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-            />
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Navigation PaperProps={{ style: { width: drawerWidth } }} />
-          </Hidden>
-        </nav>
+       
         <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} />
+          
           <main className={classes.main}>
-            <Content />
+            <GuestContent />
            
           </main>
           <footer className={classes.footer}>
@@ -205,4 +192,4 @@ function Paperbase(props: PaperbaseProps) {
   );
 }
 
-export default withStyles(styles)(Paperbase);
+export default withStyles(styles)(PaperbaseGuess);

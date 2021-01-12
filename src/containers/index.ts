@@ -5,6 +5,7 @@ import VenueContainer from 'containers/Venue';
 import UserContainer from 'containers/User';
 import DashboardContainer from 'containers/Dashboard';
 import MainScreen from 'containers/MainScreen';
+import GuestScreen from 'containers/GuestScreen';
 
 export {
     // public pages
@@ -15,5 +16,6 @@ export {
     DashboardContainer,
     UserContainer,
     VenueContainer,
-    ReservationContainer
+    ReservationContainer,
+    GuestScreen
 }
